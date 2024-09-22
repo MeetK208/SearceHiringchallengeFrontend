@@ -1,0 +1,136 @@
+<div
+  *ngIf="isloading"
+  class="fixed inset-0 flex flex-col justify-center items-center bg-white bg-opacity-75 z-50"
+>
+  <mat-spinner diameter="50"></mat-spinner>
+  <p>Loading...</p>
+</div>
+
+<div class="p-4">
+  <h4 class="text-2xl font-bold text-center mb-4">{{ message }}</h4>
+  <form
+    *ngIf="!isDelete"
+    [formGroup]="userForm"
+    (ngSubmit)="submitForm()"
+    class="space-y-4"
+  >
+    <div class="form-group">
+      <label class="font-medium">Designation:</label>
+      <input
+        matInput
+        formControlName="designation"
+        class="input border border-gray-300 w-full px-3 py-1.5 rounded"
+      />
+      <div
+        *ngIf="
+          userForm.get('designation')?.touched &&
+          userForm.get('designation')?.errors
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        <p *ngIf="userForm.get('designation')?.errors?.['required']">
+          Designation is required
+        </p>
+        <p *ngIf="userForm.get('designation')?.errors?.['minLength']">
+          Designation must be at least 3 characters
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-medium">Department:</label>
+      <input
+        matInput
+        formControlName="department"
+        class="input border border-gray-300 w-full px-3 py-1.5 rounded"
+      />
+      <div
+        *ngIf="
+          userForm.get('department')?.invalid &&
+          userForm.get('department')?.touched
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        Department is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-medium">Budget:</label>
+      <input
+        matInput
+        type="number"
+        formControlName="budget"
+        class="input border border-gray-300 w-full px-3 py-1.5 rounded"
+      />
+      <div
+        *ngIf="
+          userForm.get('budget')?.touched && userForm.get('budget')?.errors
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        <p *ngIf="userForm.get('budget')?.errors?.['required']">
+          Budget is required
+        </p>
+        <p *ngIf="userForm.get('budget')?.errors?.['pattern']">
+          Budget must be a number
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-medium">Budget Unit:</label>
+      <mat-select formControlName="budgetUnit" class="w-full custom-mat-select">
+        <mat-option value="L">Lakh</mat-option>
+        <mat-option value="Cr">Crore</mat-option>
+      </mat-select>
+      <div
+        *ngIf="
+          userForm.get('budgetUnit')?.invalid &&
+          userForm.get('budgetUnit')?.touched
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        Budget unit is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-medium">Location:</label>
+      <input
+        matInput
+        formControlName="location"
+        class="input border border-gray-300 w-full px-3 py-1.5 rounded"
+      />
+      <div
+        *ngIf="
+          userForm.get('location')?.invalid && userForm.get('location')?.touched
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        Location is required
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="w-full bg-[#FFB414] hover:bg-[#d69c1f] text-white font-bold py-2 px-4 rounded"
+    >
+      <span *ngIf="isEdit">Update</span>
+      <span *ngIf="!isEdit">Save</span>
+    </button>
+  </form>
+
+  <button
+    *ngIf="isDelete"
+    (click)="onDelete()"
+    type="button"
+    mat-raised-button
+    color="primary"
+    class="w-full bg-[#FFB414] hover:bg-[#d69c1f] text-white font-bold py-2 px-4 rounded"
+  >
+    Confirm Delete
+  </button>
+</div>

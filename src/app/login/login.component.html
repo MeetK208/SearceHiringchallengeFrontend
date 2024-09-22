@@ -1,0 +1,90 @@
+<!-- src/app/login/login.component.html -->
+<div class="flex items-center justify-center min-h-screen bg-[#FAF7F2]">
+  <div class="w-full max-w-lg bg-white shadow-md rounded px-8 py-6">
+    <div class="flex gap-8 justify-center mb-4">
+      <img src="logo.png" alt="logo" />
+      <img src="happierwork.png" alt="happier" />
+    </div>
+    <h2 class="text-3xl font-semibold mb-6">Login</h2>
+    <div
+      *ngIf="isLoading"
+      class="fixed inset-0 flex justify-center items-center bg-white bg-opacity-75 z-50"
+    >
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Logging you in...</p>
+    </div>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="username"
+        >
+          Email ID
+        </label>
+        <input
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          placeholder="Enter your email ID"
+          type="email"
+          [(ngModel)]="username"
+          name="username"
+          #usernameRef="ngModel"
+          required
+          email
+        />
+        <div
+          *ngIf="usernameRef.errors?.['required'] && usernameRef.dirty"
+          class="text-red-500 text-xs"
+        >
+          Email is required.
+        </div>
+        <div
+          *ngIf="usernameRef.errors?.['email'] && usernameRef.dirty"
+          class="text-red-500 text-xs"
+        >
+          Please enter a valid email.
+        </div>
+      </div>
+      <div class="mb-6">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="password"
+        >
+          Password
+        </label>
+        <input
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Enter your Password"
+          name="password"
+          #passwordRef="ngModel"
+          required
+        />
+        <div
+          *ngIf="passwordRef.errors?.['required'] && passwordRef.dirty"
+          class="text-red-500 text-xs"
+        >
+          Password is required.
+        </div>
+        <!-- <div *ngIf="passwordRef.errors?.['minlength'] && passwordRef.dirty" class="text-red-500 text-xs">
+                  Password must be at least 8 characters.
+              </div> -->
+      </div>
+      <div *ngIf="errorMessage" class="text-red-500 text-sm mb-4">
+        {{ errorMessage }}
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          class="bg-[#FFB414] hover:bg-[#e7a71c] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

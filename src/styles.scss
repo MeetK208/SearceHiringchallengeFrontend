@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Positioning the toast at the top center */
+/* Base styling for all toasts */
+.custom-toast-position {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  z-index: 1060;
+  font-family: Arial, sans-serif; /* Professional font */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  // padding: 16px 24px; /* Adequate padding */
+  display: flex;
+  align-items: center;
+  animation: fadeInOut 3s both; /* Animation for fade in and out */
+}
+
+/* Toast icons using FontAwesome */
+.toast-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+/* Success toast style */
+.toast-success {
+  background-color: #28a745; /* Green */
+  color: white; /* White text color for better readability */
+}
+
+/* Error toast style */
+.toast-error {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+
+/* Warning toast style */
+.toast-warning {
+  background-color: #ffc107; /* Yellow */
+  color: black; /* Black text for better contrast on yellow */
+}
+
+/* Fade in and out animation */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}

@@ -1,0 +1,27 @@
+/* Directly targeting mat-table within the component */
+app-project-detail mat-table {
+    background-color: white; /* Change to your desired color */
+    // padding: 12px;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .btn {
+    background-color: #FFB414;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+  

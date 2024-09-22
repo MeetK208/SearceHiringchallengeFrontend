@@ -1,0 +1,27 @@
+<div class="flex h-screen overflow-hidden">
+    <div class="bg-[#3D3D3D] h-[100vh] p-3 flex flex-col justify-between">
+        <div>
+            <img src="logo.png" alt="logo" class="mb-2">
+            <hr/>
+        </div>
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 font-semibold" (click)="openLogoutModal()">
+            Logout
+        </button>
+    </div>
+    <div class="flex-grow ">
+        <router-outlet></router-outlet>
+        <!-- <app-projects></app-projects> -->
+    </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div *ngIf="showLogoutModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-lg font-semibold mb-4">Confirm Logout</h2>
+        <p>Are you sure you want to logout?</p>
+        <div class="flex justify-end mt-4">
+            <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2" (click)="closeLogoutModal()">Cancel</button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</div>
